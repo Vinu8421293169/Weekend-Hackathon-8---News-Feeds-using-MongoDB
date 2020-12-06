@@ -10,8 +10,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.get('/newFeeds',(req,res)=>{
-    let limit=parseInt(req.body.limit)||10;
-    let offset=parseInt(req.body.offset)||0;
+    let limit=req.body.limit?req.body.limit:10;
+    let offset=req.body.offset?req.body.offset:0;
 
     newsArticleModel.find().skip(offset).limit(limit).then((ele)=>{
         res.send(ele);
