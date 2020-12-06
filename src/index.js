@@ -8,27 +8,10 @@ const {newsArticleModel}=require('./connector');
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+
 app.get('/newFeeds',(req,res)=>{
-    let limit=10;
-    let offset=0;
-
-    newsArticleModel.find().skip(offset).limit(limit).then((ele)=>{
-        res.send(ele);
-    });
-})
-
-app.get('/newFeeds/:limit',(req,res)=>{
-    let limit=parseInt(req.params.limit);
-    let offset=0;
-
-    newsArticleModel.find().skip(offset).limit(limit).then((ele)=>{
-        res.send(ele);
-    });
-});
-
-app.get('/newFeeds/:limit/:offset',(req,res)=>{
-    let limit=parseInt(req.params.limit);
-    let offset=parseInt(req.params.offset);
+    let limit=isNaN(req.query.limit) || !req.query.limit ?10:parseInt(req.query.limit);
+    let offset=isNaN(req.query.offset) || !req.query.limit ?0:parseInt(req.query.offset);
 
     newsArticleModel.find().skip(offset).limit(limit).then((ele)=>{
         res.send(ele);
