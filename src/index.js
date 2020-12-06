@@ -11,7 +11,7 @@ app.use(express.json());
 
 app.get('/newFeeds',(req,res)=>{
     let limit=isNaN(req.query.limit) || !req.query.limit ?10:parseInt(req.query.limit);
-    let offset=isNaN(req.query.offset) || !req.query.limit ?0:parseInt(req.query.offset);
+    let offset=isNaN(req.query.offset) || !req.query.offset ?0:parseInt(req.query.offset);
 
     newsArticleModel.find().limit(limit).skip(offset).then((ele)=>{
         res.send(ele);
