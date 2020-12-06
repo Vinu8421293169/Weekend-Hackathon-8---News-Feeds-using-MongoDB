@@ -12,7 +12,7 @@ app.get('/newFeeds',(req,res)=>{
     let limit=10;
     let offset=0;
 
-    newsArticleModel.find().limit(limit).skip(offset).then((ele)=>{
+    newsArticleModel.find().skip(offset).limit(limit).then((ele)=>{
         res.send(ele);
     });
 })
@@ -21,7 +21,7 @@ app.get('/newFeeds/:limit',(req,res)=>{
     let limit=parseInt(req.params.limit);
     let offset=0;
 
-    newsArticleModel.find().limit(limit).skip(offset).then((ele)=>{
+    newsArticleModel.find().skip(offset).limit(limit).then((ele)=>{
         res.send(ele);
     });
 });
@@ -30,7 +30,7 @@ app.get('/newFeeds/:limit/:offset',(req,res)=>{
     let limit=parseInt(req.params.limit);
     let offset=parseInt(req.params.offset);
 
-    newsArticleModel.find().limit(limit).skip(offset).then((ele)=>{
+    newsArticleModel.find().skip(offset).limit(limit).then((ele)=>{
         res.send(ele);
     });
 });
